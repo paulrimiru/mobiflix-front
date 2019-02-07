@@ -7,6 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
+import MovieList from 'src/MovieList';
+
 import './App.scss';
 
 class App extends React.Component {
@@ -33,7 +35,6 @@ class App extends React.Component {
               >
               Movies
             </Typography>
-            <div/>
             <IconButton
               color="inherit"
               aria-label="Open drawer"
@@ -43,6 +44,7 @@ class App extends React.Component {
             </IconButton>
           </Toolbar>
         </AppBar>
+        <MovieList />
       </div>
     );
   }

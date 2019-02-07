@@ -1,0 +1,16 @@
+@import "src/Theme/base.scss";
+
+.movielist {
+  display: flex;
+  justify-content: center;
+  width: 90vw!important;
+  height: 95vh!important;
+  margin: 1px!important;
+  margin-top: 64px!important;
+  overflow-x: hidden!important;
+  overflow-x: auto!important;
+
+  &::-webkit-scrollbar { 
+    display: none; 
+  } 
+}

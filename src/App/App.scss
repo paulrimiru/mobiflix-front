@@ -1,7 +1,12 @@
 @import "src/Theme/base.scss";
 
 .app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+  background-color: map-get($colors, primary);
 
   &-bar {
     background-color: map-get($colors, primary) !important;
