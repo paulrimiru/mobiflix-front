@@ -1,0 +1,15 @@
+.movieplayer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  color: white!important;
+
+  &-back {
+    position: absolute!important;
+    color: white!important;
+    top: 24px;
+    left: 24px;
+    text-decoration: none;
+  }
+}

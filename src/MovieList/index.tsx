@@ -29,7 +29,7 @@ export default class MovieList extends React.Component<MovieListProps> {
       author: 'author',
       featured: true,
       img: image,
-      title: 'Image',
+      title: 'tile',
     }));
 
     return (

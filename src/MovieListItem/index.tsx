@@ -4,6 +4,7 @@ import { Grid } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import PlayIcon from '@material-ui/icons/PlayCircleOutlineRounded';
+import { Link } from 'react-router-dom';
 
 import { IMovieListItemProps } from './interfaces';
 
@@ -13,7 +14,7 @@ export default class MovieListItem extends React.Component<IMovieListItemProps> 
 
   public render() {
 
-    const { img, author } = this.props;
+    const { img, title } = this.props;
 
     return (
       <Grid
@@ -23,7 +24,8 @@ export default class MovieListItem extends React.Component<IMovieListItemProps> 
         sm='auto'
         className="movielist-item"
       >
-        <div className="movielist-item__container">
+        <Link to={`watch/${title}`}
+          className="movielist-item__container">
           <IconButton
             color="inherit"
             aria-label="Open drawer"
@@ -38,9 +40,9 @@ export default class MovieListItem extends React.Component<IMovieListItemProps> 
             color="textSecondary"
             className="movielist-item__container-title"
             gutterBottom={true}>
-            {author}
+            {title}
           </Typography>
-        </div>
+        </Link>
         <img
           src={img}
           className="movielist-item__image"
