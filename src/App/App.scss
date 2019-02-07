@@ -1,0 +1,26 @@
+@import "src/Theme/base.scss";
+
+.app {
+  text-align: center;
+
+  &-bar {
+    background-color: map-get($colors, primary) !important;
+
+    &__toolbar {
+      display: flex!important;
+      align-items: center!important;
+
+      &-searchicon {
+        position: absolute!important;
+        right: 0!important;
+        margin-right: 24px!important;
+      }
+
+      &-header {
+        margin-left: 48px!important;
+        font-weight: 300!important;
+        font-size: 24px!important;
+      }
+    }
+  }
+}
