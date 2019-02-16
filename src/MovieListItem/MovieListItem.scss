@@ -2,8 +2,9 @@
 
 .movielist-item {
   position: relative;
-  width: 200px!important;
+  width: 270px!important;
   height: 350px!important;
+  margin: 2px!important;
 
   &__image {
     min-width: 100%;
@@ -21,11 +22,11 @@
     justify-content: center;
     align-items: center;
     color: map-get($colors, secondary);
-    transition: background-color 0.5s linear; /* vendorless fallback */
-    -o-transition: background-color 0.5s linear; /* opera */
-    -ms-transition: background-color 0.5s linear; /* IE 10 */
-    -moz-transition: background-color 0.5s linear; /* Firefox */
-    -webkit-transition: background-color 0.5s linear; /*safari and chrome */
+    transition: background-color 0.2s linear; /* vendorless fallback */
+    -o-transition: background-color 0.2s linear; /* opera */
+    -ms-transition: background-color 0.2s linear; /* IE 10 */
+    -moz-transition: background-color 0.2s linear; /* Firefox */
+    -webkit-transition: background-color 0.2s linear; /*safari and chrome */
     text-decoration: none;
 
     &-title {
