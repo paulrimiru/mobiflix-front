@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import IconButton from '@material-ui/core/IconButton';
 import BackIcon from '@material-ui/icons/ArrowBackRounded';
+import PlayIcon from '@material-ui/icons/PlayCircleOutlineRounded';
 import ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
 
@@ -30,6 +31,35 @@ export default class MoviePlayer extends React.Component<IMoviePlayerProps> {
           className="movieplayer-player"
           controls={true}
           />
+        
+        <div className="movieplayer-episodes">
+          <div className="movieplayer-episode">
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              >
+                <PlayIcon
+                  fontSize="large"
+                />
+            </IconButton>
+            <div className="movieplayer-episode__name">
+              Episode
+            </div>
+          </div>
+          <div className="movieplayer-episode">
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              >
+                <PlayIcon
+                  fontSize="large"
+                />
+            </IconButton>
+            <div className="movieplayer-episode__name">
+              Episode
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
