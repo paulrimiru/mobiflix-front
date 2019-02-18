@@ -1,3 +1,5 @@
 import { Movie } from "src/MovieList/interfaces";
 
-export type IMovieListItemProps = Movie;
+export interface IAppState {
+  movies: Movie[],
+}
