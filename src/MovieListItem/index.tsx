@@ -24,7 +24,7 @@ export default class MovieListItem extends React.Component<IMovieListItemProps> 
         sm='auto'
         className="movielist-item"
       >
-        <Link to={`watch/${name}`}
+        <Link to={`movies/watch/${name}`}
           className="movielist-item__container">
           <IconButton
             color="inherit"

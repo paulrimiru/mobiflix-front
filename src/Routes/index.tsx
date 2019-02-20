@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import App from 'src/App';
+import Auth from 'src/Auth';
 import MoviePlayer from 'src/MoviePlayer';
 
 export default class Routes extends React.Component {
@@ -15,6 +16,7 @@ export default class Routes extends React.Component {
       <Router>
         <Switch>
           <Route exact={true} path="/" component={App} />
+          <Route exact={true} path="/login" component={Auth} />
           <Route path="/watch/:name" component={MoviePlayer} />
         </Switch>
       </Router>

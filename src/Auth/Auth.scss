@@ -1,0 +1,82 @@
+@import "src/Theme/base.scss";
+
+.auth {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  &-container {
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+
+    &-input {
+      width: 240px;
+      height: 48px;
+      margin: 12px;
+      padding-left: 8px;
+      font-size: 18px;
+      font-weight: 200;
+      color: map-get($colors, text-primary);
+      background-color: map-get($colors, primary);
+      border: 2px solid map-get($colors, text-secondary);
+      border-radius: 12px;
+      text-decoration: none;
+
+      &:focus {
+        outline: none;
+        border-color: map-get($colors, secondary);
+      }
+
+      &::placeholder {
+        font-size: 18px;
+        font-weight: 200;
+        color: map-get($colors, text-secondary);
+      }
+    }
+    
+    &__login {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 120px;
+
+      &-title {
+        margin: 12px;
+        font-size: 18px;
+        font-weight: 200;
+        color: map-get($colors, text-secondary);
+      }
+    }
+
+    &__button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 160px;
+      height: 48px;
+      margin: 12px;
+      color: map-get($colors, text-primary);
+      background-color: map-get($colors, secondary);
+      border-radius: 12px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &-header {
+    position: absolute;
+    top: 0;
+    font-size: 36px;
+    font-weight: 200;
+    color: map-get($colors, text-secondary);
+    margin-top: 32px;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+}
