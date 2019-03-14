@@ -14,7 +14,7 @@ export default class MovieListItem extends React.Component<IMovieListItemProps> 
 
   public render() {
 
-    const { poster, name } = this.props;
+    const { name } = this.props;
 
     return (
       <Grid
@@ -36,18 +36,13 @@ export default class MovieListItem extends React.Component<IMovieListItemProps> 
               />
           </IconButton>
           <Typography
-            variant="body1"
+            variant="h5"
             color="textSecondary"
             className="movielist-item__container-title"
             gutterBottom={true}>
             {name}
           </Typography>
         </Link>
-        <img
-          src={poster}
-          className="movielist-item__image"
-        />
-        
       </Grid>
     )
   }
