@@ -15,16 +15,51 @@
       display: flex!important;
       align-items: center!important;
 
-      &-searchicon {
+      &-search {
         position: absolute!important;
         right: 0!important;
+        height: 36px;
+        width: 250px;
         margin-right: 24px!important;
+        padding-left: 16px;
+        font-size: 18px;
+        font-weight: 100!important;
+        color: map-get($colors, text-primary);
+        background-color: map-get($colors, primary);
+        border: 1px solid map-get($colors, text-secondary);
+        border-radius: 8px;
+
+        &:focus {
+          outline: none;
+        }
+
+        &::placeholder {
+          font-size: 18px;
+          font-weight: 100!important;
+          color: map-get($colors, text-secondary);
+        }
       }
 
       &-header {
         margin-left: 48px!important;
         font-weight: 300!important;
         font-size: 24px!important;
+      }
+    }
+
+    &__drawer {
+      width: 250px;
+
+      &-title {
+        margin-top: 12px;
+        margin-left: 12px;
+        font-weight: 200;
+        font-size: 18px;
+      }
+
+      &-item {
+        font-weight: 100!important;
+        font-size: 14px!important;
       }
     }
   }

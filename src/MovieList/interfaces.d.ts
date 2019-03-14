@@ -1,5 +1,6 @@
 export interface MovieListProps {
   movies: Movie[];
+  searching: boolean;
 }
 
 export interface Movie {
