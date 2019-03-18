@@ -1,21 +1,22 @@
 import * as React from 'react';
 
+import { List, ListItem, ListItemText, SwipeableDrawer } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import MenuIcon from '@material-ui/icons/Menu';
+import { connect } from 'react-redux'
 
-import MovieList from 'src/MovieList';
-import { Movie } from 'src/MovieList/interfaces';
-import { http } from 'src/Utils/axios-helpers';
+import MovieList from 'src/components/MovieList';
+import { Movie } from 'src/components/MovieList/interfaces';
+import { getMovies } from 'src/store/reducers/movies';
 
-import { IAppState } from './interfaces';
+import { IAppProps, IAppState } from './interfaces';
 
 import './App.scss';
-import { SwipeableDrawer, List, ListItem, ListItemText } from '@material-ui/core';
 
-class App extends React.Component<{}, IAppState> {
+class App extends React.Component<IAppProps, IAppState> {
   public state = {
     drawerToggle: false,
     filteredMovies: [],
@@ -26,23 +27,28 @@ class App extends React.Component<{}, IAppState> {
   }
 
   public componentDidMount() {
-    if (!this.state.movies.length) {
-      http.get('content/all/')
-        .then((resp) => {
-          const movies = resp.data;
-
-          const genre = movies.map((movie: Movie) => movie.genre.split(','))
-          this.setState({
-            genre: Array.from(new Set(genre.flat())),
-            movies,
-          })
-        })
-        .catch((error) => console.log('>>>>>>', error.message));
+    const { movies } = this.props;
+  
+    if (!movies || !movies.length) {
+      this.props.getMovies().then(() => {
+        this.processMovies();
+      })
+    }else {
+      this.processMovies();
     }
   }
 
+  public flatten = (arr) => {
+    return arr.reduce((flat, toFlatten) => {
+      return flat.concat(Array.isArray(toFlatten) ? this.flatten(toFlatten) : toFlatten);
+    }, []);
+  }
+
   public handleSearchOnChange = (event) => {
-    const filteredMovies = this.state.movies.filter((movie: Movie) => movie.name.startsWith(event.target.value));
+    const filteredMovies = this.state.movies.filter(
+      (movie: Movie) => movie.name.toLowerCase().startsWith(event.target.value.toLowerCase())
+    );
+
     this.setState({
       filteredMovies,
       searchWord: event.target.value,
@@ -52,7 +58,7 @@ class App extends React.Component<{}, IAppState> {
   public handleSearchByGenre = (genre: string, index: number) => (event) => {
     const filteredMovies = this.state.movies.filter((movie: Movie) => {
       const genres = movie.genre.split(',')
-      return genres.filter((item) => item === genre).length;
+      return genres.filter((item) => item.toLowerCase() === genre.toLowerCase()).length;
     });
 
     this.setState({
@@ -66,6 +72,14 @@ class App extends React.Component<{}, IAppState> {
   public toggleDrawer = () => {
     this.setState({
       drawerToggle: !this.state.drawerToggle,
+    });
+  }
+
+  public processMovies() {
+    const genre: string[][] = this.props.movies.map((movie: Movie) => movie.genre.split(','));
+    this.setState({
+      genre: Array.from(new Set(this.flatten(genre))),
+      movies: this.props.movies,
     });
   }
 
@@ -147,4 +161,13 @@ class App extends React.Component<{}, IAppState> {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  movies: state.movies.data
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  getMovies: () => dispatch(getMovies())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
+

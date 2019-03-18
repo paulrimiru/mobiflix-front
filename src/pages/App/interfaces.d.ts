@@ -1,4 +1,4 @@
-import { Movie } from "src/MovieList/interfaces";
+import { Movie } from 'src/components/MovieList/interfaces';
 
 export interface IAppState {
   movies: Movie[],
@@ -7,4 +7,9 @@ export interface IAppState {
   drawerToggle: boolean;
   genre: string[];
   selectedGenre: string;
+}
+
+export interface IAppProps {
+  movies: Movie[],
+  getMovies: () => Promise<any[]>,
 }
