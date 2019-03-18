@@ -14,7 +14,7 @@ export default class MovieListItem extends React.Component<IMovieListItemProps> 
 
   public render() {
 
-    const { name } = this.props;
+    const { name, id } = this.props;
 
     return (
       <Grid
@@ -24,7 +24,7 @@ export default class MovieListItem extends React.Component<IMovieListItemProps> 
         sm='auto'
         className="movielist-item"
       >
-        <Link to={`watch/${name}`}
+        <Link to={`watch/${id}`}
           className="movielist-item__container">
           <IconButton
             color="inherit"
