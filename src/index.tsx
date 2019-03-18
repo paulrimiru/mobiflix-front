@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import registerServiceWorker from './registerServiceWorker';
-import Routes from './Routes';
+import Routes from './routes';
 
 import './index.scss';
 

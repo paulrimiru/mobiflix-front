@@ -2,10 +2,9 @@ import * as React from 'react';
 
 import { Grid } from '@material-ui/core';
 
-import MovieListItem from 'src/MovieListItem';
-import Spinner from 'src/Spinner';
-
-import { MovieListProps } from './interfaces';
+import { MovieListProps } from 'src/components/MovieList/interfaces';
+import MovieListItem from 'src/components/MovieListItem';
+import Spinner from 'src/components/Spinner';
 
 import './MovieList.scss';
 

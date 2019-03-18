@@ -27,7 +27,7 @@
         color: map-get($colors, text-primary);
         background-color: map-get($colors, primary);
         border: 1px solid map-get($colors, text-secondary);
-        border-radius: 8px;
+        border-radius: 28px;
 
         &:focus {
           outline: none;
