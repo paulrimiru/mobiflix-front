@@ -52,4 +52,27 @@
       cursor: pointer;
     }
   }
+
+  &-info {
+
+    margin: 24px;
+    
+    &__name {
+      margin: 8px;
+      font-weight: 200;
+      font-size: 18px;
+    }
+
+    &__actors {
+      margin: 8px;
+      font-size: 13px;
+      font-weight: 100;
+    }
+
+    &__description {
+      font-weight: 200;
+      margin: 8px;
+      font-size: 14px;
+    }
+  }
 }

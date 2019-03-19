@@ -20,7 +20,7 @@ export default class Routes extends React.Component {
           <Switch>
             <Route exact={true} path="/" component={App} />
             <Route exact={true} path="/login" component={Auth} />
-            <Route path="/watch/:name" component={MoviePlayer} />
+            <Route path="/watch/:id" component={MoviePlayer} />
           </Switch>
         </Router>
       </Provider>
