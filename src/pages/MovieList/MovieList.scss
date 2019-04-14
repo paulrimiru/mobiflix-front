@@ -1,5 +1,9 @@
 @import "src/Theme/base.scss";
 
+.movie-list {
+  width: 100vw;
+}
+
 .movielist {
   display: flex;
   justify-content: center;

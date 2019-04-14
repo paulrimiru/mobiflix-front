@@ -1,3 +1,3 @@
-import { Movie } from 'src/components/MovieList/interfaces';
+import { Movie } from 'src/pages/MovieList/interfaces';
 
 export type IMovieListItemProps = Movie;

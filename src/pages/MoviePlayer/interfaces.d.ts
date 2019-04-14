@@ -1,4 +1,4 @@
-import { Movie } from "src/components/MovieList/interfaces";
+import { Movie } from "src/pages/MovieList/interfaces";
 
 export interface IMoviePlayerProps {
   url?: string;
@@ -9,8 +9,16 @@ export interface IMoviePlayerProps {
     }
   };
   getMovies: () => Promise<any>;
+  isVoucherValid: boolean;
+  validateVoucher: (voucher: string) => Promise<any>;
+  fetchMovieDetails: (id: string, voucher: string) => Promise<any>;
+  voucher: string; 
+  movieDetails: Movie;
 }
 
 export interface IMoviePlayerState {
+  voucher: string;
   movie: Movie;
+  isValid: boolean;
+  isLoading: boolean;
 }
