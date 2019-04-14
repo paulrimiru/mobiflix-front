@@ -8,11 +8,16 @@ import registerServiceWorker from './registerServiceWorker';
 
 import './index.scss';
 import App from './pages/App';
+import { PersistGate } from 'redux-persist/integration/react';
+
+const configStore = store;
 
 ReactDOM.render(
   <CookiesProvider>
-    <Provider store={store()}>
-      <App />
+    <Provider store={configStore().store}>
+      <PersistGate loading={null} persistor={configStore().persistor}>
+        <App />
+      </PersistGate>
     </Provider>
   </CookiesProvider>,
   document.getElementById('root') as HTMLElement

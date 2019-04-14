@@ -89,18 +89,16 @@ class MovieList extends React.Component<MovieListProps, IMovieListState> {
     );
 
     return (
-      movieList.length === 0
-        ? <div className="nomovies">No movies found...</div>
-        : renderMovieListPage(
-            this.handleSearchOnChange,
-            this.handleSearchByGenre,
-            this.toggleDrawer,
-            this.state.searchWord,
-            this.state.drawerToggle,
-            this.state.genre,
-            this.state.selectedGenre,
-            movieList
-          )
+      renderMovieListPage(
+        this.handleSearchOnChange,
+        this.handleSearchByGenre,
+        this.toggleDrawer,
+        this.state.searchWord,
+        this.state.drawerToggle,
+        this.state.genre,
+        this.state.selectedGenre,
+        movieList
+      )
     )
   }
 }
@@ -125,21 +123,27 @@ const renderMovieListPage = (
       selectedGenre={selectedGenre}
       genre={genre}
     />
-    <Grid
-      container={true}
-      className="movielist"
-      spacing={0}
-      wrap='wrap'
-    > 
+    <>
       {
-        movieList.map((data, index) => (
-          <MovieListItem
-            {...data}
-            key={new Date().toISOString() + index}
-          />
-        ))
+        movieList.length === 0
+          ? <div className="nomovies">No movies found...</div>
+          : <Grid
+              container={true}
+              className="movielist"
+              spacing={0}
+              wrap='wrap'
+            > 
+              {
+                movieList.map((data, index) => (
+                  <MovieListItem
+                    {...data}
+                    key={new Date().toISOString() + index}
+                  />
+                ))
+              }
+            </Grid>
       }
-    </Grid>
+    </>
   </div>
 )
 
