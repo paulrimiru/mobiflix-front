@@ -1,29 +1,23 @@
-import * as React from 'react';
+// import * as React from 'react';
 
-import { Provider } from 'react-redux';
-import {
-  HashRouter as Router,
-  Route,
-  Switch,
-} from 'react-router-dom';
+// import { withCookies } from 'react-cookie';
+// import {
+//   HashRouter as Router,
+//   Route,
+//   Switch,
+// } from 'react-router-dom';
 
-import App from 'src/pages/App';
-import Auth from 'src/pages/Auth';
-import MoviePlayer from 'src/pages/MoviePlayer';
-import store from 'src/store';
+// import App from 'src/pages/App';
+// import MovieList from 'src/pages/MovieList';
+// import MoviePlayer from 'src/pages/MoviePlayer';
 
-export default class Routes extends React.Component {
-  public render() {
-    return (
-      <Provider store={store()}>
-        <Router>
-          <Switch>
-            <Route exact={true} path="/" component={App} />
-            <Route exact={true} path="/login" component={Auth} />
-            <Route path="/watch/:id" component={MoviePlayer} />
-          </Switch>
-        </Router>
-      </Provider>
-    )
-  }
-}
+// // tslint:disable
+// class Routes extends React.Component<{ cookies?: any }> {
+//   public render() {
+//     return (
+        
+//     )
+//   }
+// }
+
+// export default withCookies(Routes);

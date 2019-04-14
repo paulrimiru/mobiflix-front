@@ -1,4 +1,4 @@
-import { Movie } from 'src/components/MovieList/interfaces';
+import { Movie } from 'src/pages/MovieList/interfaces';
 import { http } from 'src/Utils/axios-helpers';
 
 import { MovieActions } from './types';
@@ -14,11 +14,12 @@ export const getMovies = () => (dispatch) => {
           .catch((error) => console.log('>>>>>>', error.message));
 };
 
-export default (state = {}, action) => {
+export default (state = { data: [] }, action) => {
   switch (action.type) {
    case MovieActions.getMoviesSuccess:
     return {
-     data: action.movies
+      ...state,
+     data: [...action.movies]
     }
    default:
     return state

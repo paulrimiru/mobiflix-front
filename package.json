@@ -11,6 +11,7 @@
     "axios": "^0.18.0",
     "gh-pages": "^2.0.1",
     "react": "^16.8.0",
+    "react-cookie": "^3.1.1",
     "react-dom": "^16.8.0",
     "react-player": "^1.9.3",
     "react-router-dom": "^4.3.1"
@@ -36,6 +37,7 @@
     "react-redux": "^6.0.1",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
+    "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "typescript": "^3.3.1"
   }
