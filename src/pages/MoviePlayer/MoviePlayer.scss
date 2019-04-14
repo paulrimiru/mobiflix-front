@@ -107,8 +107,8 @@
       }
   
       &__submit {
+        display: inline-block;
         height: 24px;
-        width: 100px;
         margin: 24px!important;
         padding: 16px;
         font-size: 18px;
@@ -118,6 +118,7 @@
         border: 1px solid map-get($colors, secondary);
         border-radius: 28px;
         text-align: center;
+        text-decoration: none;
 
         &:hover {
           background-color: map-get($colors, secondary);

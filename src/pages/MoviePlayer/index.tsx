@@ -50,7 +50,9 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
 
     this.props.validateVoucher(this.state.voucher)
       .then(async () => {
-        await this.props.fetchMovieDetails(this.props.match.params.id, this.state.voucher);
+        if (this.props.isVoucherValid) {
+          await this.props.fetchMovieDetails(this.props.match.params.id, this.state.voucher);
+        }
 
         this.setState({
           isValid: true,
@@ -70,7 +72,10 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
     if(voucher.length > 0) {
       validateVoucher(voucher)
         .then(async () => {
-          await this.props.fetchMovieDetails(match.params.id, voucher);
+          if (this.props.isVoucherValid) {
+            await this.props.fetchMovieDetails(match.params.id, voucher);
+          }
+          
           this.setState({
             isValid: true,
             movie: this.props.movieDetails,
@@ -88,7 +93,7 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
   public render() {
     if (this.state.isLoading) {
       return (<Spinner />)
-    } else if (!this.state.isValid) {
+    } else if (!this.props.isVoucherValid) {
       return (
         <div className="movieplayer-voucher">
           <div className="movieplayer-voucher-container">
@@ -102,6 +107,12 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
               className="movieplayer-voucher-container__submit"
               onClick={this.handleSVoucherVerifySubmit}
             >Submit</div>
+            <a
+              href="https://netpap.co.ke/mobflix/milestone/msafiri"
+              target="_blank"
+              className="movieplayer-voucher-container__submit">
+              Buy a voucher
+            </a>
           </div>
         </div>
       )
