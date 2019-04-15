@@ -6,15 +6,14 @@ import ReactPlayer from 'react-player';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import Spinner from 'src/components/Spinner';
 import { getMovies } from 'src/store/reducers/movies';
+import { fetchMovieDetails } from 'src/store/reducers/movie';
+import { validateVoucher } from 'src/store/reducers/voucher';
 
 import { IMoviePlayerProps, IMoviePlayerState } from './interfaces';
 
 import './MoviePlayer.scss';
-import Spinner from 'src/components/Spinner';
-import { validateVoucher } from 'src/store/reducers/voucher';
-import { Modal, Button } from '@material-ui/core';
-import { fetchMovieDetails } from '../../store/reducers/movie/index';
 
 class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> {
 
@@ -31,6 +30,10 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
       imdb: '',
       release: '',
       rating: '',
+      category: {
+        name: '',
+        id: ''
+      }
     },
     isValid: false,
     isLoading: true,
@@ -50,7 +53,7 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
 
     this.props.validateVoucher(this.state.voucher)
       .then(async () => {
-        if (this.props.isVoucherValid) {
+        if (!this.props.isVoucherValid) {
           await this.props.fetchMovieDetails(this.props.match.params.id, this.state.voucher);
         }
 
@@ -72,7 +75,7 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
     if(voucher.length > 0) {
       validateVoucher(voucher)
         .then(async () => {
-          if (this.props.isVoucherValid) {
+          if (!this.props.isVoucherValid) {
             await this.props.fetchMovieDetails(match.params.id, voucher);
           }
           
@@ -93,7 +96,7 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
   public render() {
     if (this.state.isLoading) {
       return (<Spinner />)
-    } else if (!this.props.isVoucherValid) {
+    } else if (this.props.isVoucherValid) {
       return (
         <div className="movieplayer-voucher">
           <div className="movieplayer-voucher-container">
@@ -134,7 +137,7 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
                   </Link>
                   
                   <ReactPlayer
-                    url='https://www.youtube.com/watch?v=ysz5S6PUM-U'
+                    url={this.props.movieDetails.video_url ? `http://localhost${this.props.movieDetails.video_url}` : 'https://www.youtube.com/watch?v=ysz5S6PUM-U'}
                     playing={false}
                     className="movieplayer-player"
                     controls={true}
@@ -142,8 +145,9 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
                   
                   <div className="movieplayer-info">
                     <div className="movieplayer-info__name">{ this.state.movie.name }</div>
-                    <div className="movieplayer-info__actors">{ this.state.movie.stars }</div>
                     <div className="movieplayer-info__description">{ this.state.movie.description }</div>
+                    <div className="movieplayer-info__actors">Stars: { this.state.movie.stars }</div>
+                    <div className="movieplayer-info__actors">Genre: { this.state.movie.genre }</div>
                   </div>
                 </div>
               : <Spinner /> 

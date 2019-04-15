@@ -60,20 +60,26 @@
     
     &__name {
       margin: 8px;
-      font-weight: 200;
-      font-size: 18px;
+      font-weight: 800;
+      font-size: 28px;
+      text-align: left;
     }
 
     &__actors {
       margin: 8px;
-      font-size: 13px;
-      font-weight: 100;
+      font-size: 16px;
+      font-weight: 500;
+      padding-top: 16px;
+      text-align: left;
     }
 
     &__description {
       font-weight: 200;
       margin: 8px;
       font-size: 14px;
+      padding-top: 8px;
+      width: 50vw;
+      text-align: left;
     }
   }
 
