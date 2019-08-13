@@ -12,9 +12,13 @@ import './MovieListItem.scss';
 
 export default class MovieListItem extends React.Component<IMovieListItemProps> {
 
+  public addDefaultSrc(ev){
+    ev.target.src = 'https://res.cloudinary.com/mikekrantz/image/upload/v1555356246/lloyd-dirks-74271-unsplash.jpg'
+  }
+
   public render() {
 
-    const { name, id } = this.props;
+    const { name, id, poster } = this.props;
 
     return (
       <Grid
@@ -43,6 +47,11 @@ export default class MovieListItem extends React.Component<IMovieListItemProps> 
             {name}
           </Typography>
         </Link>
+        <img
+          src={`http://localhost${poster}`}
+          onError={this.addDefaultSrc}
+          className="movielist-item__image"
+        />
       </Grid>
     )
   }

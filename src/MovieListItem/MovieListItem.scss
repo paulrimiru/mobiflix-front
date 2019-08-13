@@ -2,18 +2,16 @@
 
 .movielist-item {
   position: relative;
-  width: 270px!important;
+  width: 200px!important;
   height: 350px!important;
-  margin: 2px!important;
-  background-color: map-get($colors, secondary);
-  
+
   &__image {
     min-width: 100%;
     max-height: 100%;
     max-width: 100%;
     min-height: 100%;
   }
-  
+
   &__container {
     position: absolute;
     width: 100%;
@@ -22,14 +20,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: map-get($colors, text-primary)!important;
+    color: map-get($colors, secondary);
+    transition: background-color 0.5s linear; /* vendorless fallback */
+    -o-transition: background-color 0.5s linear; /* opera */
+    -ms-transition: background-color 0.5s linear; /* IE 10 */
+    -moz-transition: background-color 0.5s linear; /* Firefox */
+    -webkit-transition: background-color 0.5s linear; /*safari and chrome */
     text-decoration: none;
-    transition: box-shadow 500ms ease-in-out;
     background: rgba(0, 0, 0, 0.57);
 
     &-title {
       color: map-get($colors, text-primary)!important;
-      font-weight: 100!important;
     }
 
     &:hover {
@@ -41,10 +42,10 @@
       height: 350px;
       z-index: 999;
       font-size: 48px;
+      background-color: map-get($colors, secondary);
       opacity: 0.8;
       cursor: pointer;
-      box-shadow: 3px 3px 24px 1px rgba(0, 0, 0, 1);
-      transition: box-shadow 300ms ease-in-out;
+      color: white!important;
     }
   }
 }

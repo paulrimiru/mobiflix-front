@@ -22,7 +22,7 @@ export default (state = { movieDetails: {}, message: '' }, action) => {
     case MovieDetailsAction.FetchSuccess:
       return {
         ...state,
-        movieDetails: action.movie.response,
+        movieDetails: { ...action.movie.response, ...action.movie.status },
         message: action.movie.status.message
       }
     case MovieDetailsAction.FetchFailure:
