@@ -13,7 +13,15 @@ export interface IMoviePlayerProps {
   validateVoucher: (voucher: string) => Promise<any>;
   fetchMovieDetails: (id: string, voucher: string) => Promise<any>;
   voucher: string; 
-  movieDetails: Movie;
+  movieDetails: Movie & {
+    base_url: string;
+    expiry_date: string;
+    status: Status;
+  };
+}
+
+export enum Status {
+  Watch = 'WATCH'
 }
 
 export interface IMoviePlayerState {

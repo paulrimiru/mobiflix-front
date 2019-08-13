@@ -1,10 +1,10 @@
 import { http } from 'src/Utils/axios-helpers';
 
-import { MovieDetails } from './types';
+import { MovieDetailsAction } from './types';
 
-const fetchMovieDetailsSuccessAction = (movie: any) => ({ movie, type: MovieDetails.FetchSuccess});
+const fetchMovieDetailsSuccessAction = (movie: any) => ({ movie, type: MovieDetailsAction.FetchSuccess});
 
-const fetchMovieDetailsFailureAction = (message: string) => ({ message, type: MovieDetails.FetchFailure});
+const fetchMovieDetailsFailureAction = (message: string) => ({ message, type: MovieDetailsAction.FetchFailure});
 
 export const fetchMovieDetails = (id, voucher) => (dispatch) => {
   return http
@@ -13,20 +13,19 @@ export const fetchMovieDetails = (id, voucher) => (dispatch) => {
       dispatch(fetchMovieDetailsSuccessAction(resp.data));
     })
     .catch((error) => {
-      console.log('>>>>>>', error.message);
       dispatch(fetchMovieDetailsFailureAction(error.message));
     });
 };
 
 export default (state = { movieDetails: {}, message: '' }, action) => {
   switch (action.type) {
-    case MovieDetails.FetchSuccess:
+    case MovieDetailsAction.FetchSuccess:
       return {
         ...state,
-        movieDetails: action.movie.response,
+        movieDetails: { ...action.movie.response, ...action.movie.status },
         message: action.movie.status.message
       }
-    case MovieDetails.FetchFailure:
+    case MovieDetailsAction.FetchFailure:
       return {
         ...state,
         message: action.message

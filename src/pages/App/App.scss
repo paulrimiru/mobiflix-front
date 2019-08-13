@@ -48,7 +48,9 @@
     }
 
     &__drawer {
-      width: 250px;
+      display: inline-block;
+      overflow-y: hidden;
+      min-width: 250px;
 
       &-title {
         margin-top: 12px;
@@ -60,7 +62,39 @@
       &-item {
         font-weight: 100!important;
         font-size: 14px!important;
+        width: 150px;
+      }
+
+      &-buy {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        height: 50px;
+        width: 240px;
+        margin-bottom: 24px;
+        font-weight: 200;
+        padding-left: 8px;
+        text-decoration: none;
+        color: map-get($colors, primary);
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.08);
+          cursor: pointer;
+        }
+
+        &:visited {
+          text-decoration: none;
+        }
       }
     }
   }
+}
+
+.MuiExpansionPanel-expanded-222 {
+  margin-top: 0px!important;
+}
+
+.MuiExpansionPanel-expanded-261 {
+  margin: 0px!important;
 }

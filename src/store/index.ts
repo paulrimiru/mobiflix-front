@@ -6,6 +6,9 @@ import thunk from 'redux-thunk';
 import rootReducer from 'src/store/reducers';
 
 export default function configureStore() {
+  const composeEnhancers = composeWithDevTools({
+    
+  })
   const store = createStore(
     rootReducer,
     {},

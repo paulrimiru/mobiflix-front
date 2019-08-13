@@ -8,10 +8,13 @@ export const validateVoucher = (voucher) => (dispatch) => {
   return http
           .get(`/content/items/verify/${voucher}/`)
           .then((resp) => {
-            dispatch(validateVoucherAction(ValidateVoucherActions.validateVoucherSuccess, voucher));
+            if (resp.data.status === 'WATCH') {
+              dispatch(validateVoucherAction(ValidateVoucherActions.validateVoucherSuccess, voucher));
+            } else {
+              dispatch(validateVoucherAction(ValidateVoucherActions.validateVoucherFailure, voucher));
+            }
           })
           .catch((error) => {
-            console.log('>>>>>>', error.message);
             dispatch(validateVoucherAction(ValidateVoucherActions.validateVoucherFailure, voucher));
           });
 };
