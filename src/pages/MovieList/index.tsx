@@ -177,12 +177,14 @@ const renderMovieListPage = (
               wrap='wrap'
             > 
               {
-                movieList.map((data, index) => (
-                  <MovieListItem
-                    {...data}
-                    key={new Date().toISOString() + index}
-                  />
-                ))
+                movieList.map(
+                  (data, index) => (
+                    <MovieListItem
+                      {...data}
+                      key={new Date().toISOString() + index}
+                    />
+                  )
+                )
               }
             </Grid>
       }

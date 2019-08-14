@@ -36,6 +36,8 @@ export interface Movie {
   release: string;
   rating: string;
   video_url?: string;
+  trailer_url?: string;
+  base_url: string;
   category: {
     name: string;
     id: string;
