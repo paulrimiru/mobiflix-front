@@ -48,7 +48,7 @@ export default class MovieListItem extends React.Component<IMovieListItemProps> 
           </Typography>
         </Link>
         <img
-          src={`http://localhost${poster}`}
+          src={`http://127.0.0.1:8000${poster}`}
           onError={this.addDefaultSrc}
           className="movielist-item__image"
         />

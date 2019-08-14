@@ -18,26 +18,10 @@ import './MoviePlayer.scss';
 class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> {
 
   public state: IMoviePlayerState = {
-    movie: {
-      id: '',
-      name: 'Movie name',
-      poster: '',
-      description: '',
-      time: '',
-      genre: '',
-      stars: '',
-      director: '',
-      imdb: '',
-      release: '',
-      rating: '',
-      category: {
-        name: '',
-        id: ''
-      }
-    },
     isValid: false,
+    verificationSkipped: false,
     isLoading: true,
-    voucher: ''
+    voucher: '',
   }
 
   public handleVoucherInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,10 +31,6 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
   }
 
   public handleSVoucherVerifySubmit = (event) => {
-    this.setState({
-      isLoading: true
-    });
-
     this.props.validateVoucher(this.state.voucher)
       .then(async () => {
         if (!this.props.isVoucherValid) {
@@ -60,13 +40,19 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
         this.setState({
           isValid: true,
           isLoading: false,
-          movie: this.props.movieDetails,
         })
       })
       .catch(() => {
         alert('voucher is invalid');
       })
   };
+
+  public handleSkipVoucherVerify = () => {
+    this.setState({
+      verificationSkipped: true,
+      isLoading: false
+    });
+  }
 
   public async componentDidMount() {
     const { voucher, validateVoucher: validate, match } = this.props;
@@ -80,7 +66,6 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
         this.setState({
           isLoading: false,
           isValid: true,
-          movie: this.props.movieDetails,
         });
       })
       .catch((err) => {
@@ -94,14 +79,18 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
     if (this.state.isLoading) {
       return (<Spinner />)
     }
+
+    const movieDetail = Object.keys(this.props.movieDetails).length
+      ? this.props.movieDetails
+      : this.props.movies.find(({ id }) => id === this.props.match.params.id)
     
-    if (!this.props.isVoucherValid) {
+    if (!this.props.isVoucherValid && !this.state.verificationSkipped) {
       return (
         <div className="movieplayer-voucher">
           <div className="movieplayer-voucher-container">
             <input
               className="movieplayer-voucher-container__input"
-              placeholder="Search"
+              placeholder="Voucher"
               value={this.state.voucher}
               onChange={this.handleVoucherInputChange}
               />
@@ -116,6 +105,10 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
                 className="movieplayer-voucher-container__submit">
                 Buy a voucher
               </a>
+              <div
+                className="movieplayer-voucher-container__submit"
+                onClick={this.handleSkipVoucherVerify}
+              >Skip</div>
             </div>
           </div>
         </div>
@@ -123,44 +116,40 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
     } else {
       return (
         <>
-          {
-            this.state.movie
-              ? <div className="movieplayer">
-                  <Link
-                    to="/"
-                    className="movieplayer-back">
-                    <IconButton
-                      color="inherit"
-                      aria-label="back"
-                      >
-                      <BackIcon fontSize="large"/>
-                    </IconButton>
-                  </Link>
-                  
-                  <Player
-                    playsInline={true}
-                    src={
-                      this.props.movieDetails.video_url
-                        ? `${this.props.movieDetails.base_url}${this.props.movieDetails.video_url}`
-                        : 'https://www.youtube.com/watch?v=ysz5S6PUM-U'
-                    }
-                    className="movieplayer-player"
-                    fluid={false}
-                    height={250}
-                    poster={`${this.props.movieDetails.poster}${this.props.movieDetails.poster}`}
-                  >
-                    <BigPlayButton position="center" />
-                  </Player>
-                  
-                  <div className="movieplayer-info">
-                    <div className="movieplayer-info__name">{ this.state.movie.name }</div>
-                    <div className="movieplayer-info__description">{ this.state.movie.description }</div>
-                    <div className="movieplayer-info__actors">Stars: { this.state.movie.stars }</div>
-                    <div className="movieplayer-info__actors">Genre: { this.state.movie.genre }</div>
-                  </div>
-                </div>
-              : <Spinner /> 
-          }
+          <div className="movieplayer">
+            <Link
+              to="/"
+              className="movieplayer-back">
+              <IconButton
+                color="inherit"
+                aria-label="back"
+                >
+                <BackIcon fontSize="large"/>
+              </IconButton>
+            </Link>
+            
+            <Player
+              playsInline={true}
+              src={
+                this.state.verificationSkipped
+                  ? `${movieDetail!.base_url || 'http://127.0.0.1:8000'}${movieDetail!.trailer_url}`
+                  : `${movieDetail!.base_url || 'http://127.0.0.1:8000'}${movieDetail!.video_url}`
+              }
+              className="movieplayer-player"
+              fluid={false}
+              height={250}
+              poster={`${movieDetail!.base_url || 'http://127.0.0.1:8000'}${movieDetail!.poster}`}
+            >
+              <BigPlayButton position="center" />
+            </Player>
+            
+            <div className="movieplayer-info">
+              <div className="movieplayer-info__name">{ movieDetail!.name }</div>
+              <div className="movieplayer-info__description">{ movieDetail!.description }</div>
+              <div className="movieplayer-info__actors">Stars: { movieDetail!.stars }</div>
+              <div className="movieplayer-info__actors">Genre: { movieDetail!.genre }</div>
+            </div>
+          </div>
         </>
       );
     }
@@ -171,6 +160,7 @@ const mapStateToProps = (state) => ({
   isVoucherValid: state.voucher.isValid,
   voucher: state.voucher.voucher,
   movieDetails: state.movie.movieDetails,
+  movies: state.movies.data,
 })
 
 const mapDispatchToProps = (dispatch) => ({

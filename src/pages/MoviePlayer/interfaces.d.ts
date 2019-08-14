@@ -26,7 +26,7 @@ export enum Status {
 
 export interface IMoviePlayerState {
   voucher: string;
-  movie: Movie;
   isValid: boolean;
   isLoading: boolean;
+  verificationSkipped: boolean;
 }
