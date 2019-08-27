@@ -25,7 +25,7 @@ const ApplicationBar = ({
 }) => {
   return (
     <AppBar
-      position='fixed'
+      position="relative"
       className="app-bar"
       >
         <Toolbar className="app-bar__toolbar">
