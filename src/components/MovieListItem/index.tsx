@@ -23,7 +23,7 @@ export default class MovieListItem extends React.Component<IMovieListItemProps> 
     return (
       <Grid
         item={true}
-        lg={2}
+        lg='auto'
         md='auto'
         sm='auto'
         className="movielist-item"
