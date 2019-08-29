@@ -132,8 +132,8 @@ class MoviePlayer extends React.Component<IMoviePlayerProps, IMoviePlayerState> 
               playsInline={true}
               src={
                 this.state.verificationSkipped
-                  ? `${movieDetail!.base_url || 'http://127.0.0.1:8000'}${movieDetail!.trailer_url}`
-                  : `${movieDetail!.base_url || 'http://127.0.0.1:8000'}${movieDetail!.video_url}`
+                  ? `${'http://127.0.0.1:8000'}${movieDetail!.trailer_url}`
+                  : `${'http://127.0.0.1:8000'}${movieDetail!.video_url}`
               }
               className="movieplayer-player"
               fluid={false}

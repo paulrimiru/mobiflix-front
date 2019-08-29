@@ -40,7 +40,7 @@ export default class MovieListItem extends React.Component<IMovieListItemProps> 
               />
           </IconButton>
           <Typography
-            variant="h5"
+            variant="subtitle1"
             color="textSecondary"
             className="movielist-item__container-title"
             gutterBottom={true}>

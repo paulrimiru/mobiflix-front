@@ -30,6 +30,11 @@
     &-title {
       color: map-get($colors, text-primary)!important;
       font-weight: 100!important;
+      width: 200px!important;
+      margin: 2px!important;
+      height: 72px;
+      hyphens: auto;
+      word-wrap: break-word;
     }
 
     &:hover {

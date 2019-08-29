@@ -42,7 +42,7 @@ class MovieList extends React.Component<MovieListProps, IMovieListState> {
     this.setState({
       genre: Array.from(
         new Set(
-          this.flatten(movies.map((movie: Movie) => movie.genre.split(',')))
+          this.flatten(movies.map((movie: Movie) => movie.genre && movie.genre.split(',')))
         )
       )
     });
