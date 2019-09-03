@@ -1,4 +1,4 @@
-@import "src/Theme/base.scss";
+@import "./theme/base.scss";
 
 body {
   margin: 0;
@@ -6,4 +6,13 @@ body {
   font-family: sans-serif;
   background-color: map-get($colors, primary);
   overflow-y: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: map-get($colors, primary);
 }
