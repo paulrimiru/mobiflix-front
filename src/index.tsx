@@ -1,25 +1,37 @@
 import * as React from 'react';
-import { CookiesProvider } from 'react-cookie';
-import * as ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
 
-import store from 'src/store';
+import * as ReactDOM from 'react-dom';
+import {
+  HashRouter as Router,
+  Route,
+} from 'react-router-dom';
+import { Provider as AlertProvider } from 'react-alert'
+import AlertTemplate from 'react-alert-template-basic'
+
+import Home from './pages/Home';
+import Player from './pages/Player';
 import registerServiceWorker from './registerServiceWorker';
 
 import './index.scss';
-import App from './pages/App';
-import { PersistGate } from 'redux-persist/integration/react';
 
-const configStore = store;
+const options = {
+  position: 'bottom center',
+  timeout: 5000,
+  offset: '30px',
+  transition: 'scale'
+}
 
 ReactDOM.render(
-  <CookiesProvider>
-    <Provider store={configStore().store}>
-      <PersistGate loading={null} persistor={configStore().persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
-  </CookiesProvider>,
+  <AlertProvider template={AlertTemplate} {...options}>
+    <div className="app">
+      <Router>
+        <>
+          <Route exact={true} path="/" component={Home} />
+          <Route path="/watch/:id" component={Player} />
+        </>
+      </Router>
+    </div>
+  </AlertProvider>,
   document.getElementById('root') as HTMLElement
 );
 registerServiceWorker();

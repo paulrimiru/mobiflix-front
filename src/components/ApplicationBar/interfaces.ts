@@ -3,7 +3,3 @@ export enum ExpandableMenuSection {
   Genres = 'Genres',
   Categories= 'Categories'
 }
-
-export interface AppBarProps {
-
-}

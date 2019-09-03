@@ -1,5 +1,4 @@
 @import "src/Theme/base.scss";
-@import "~video-react/styles/scss/video-react";
 
 .movieplayer {
   display: flex;
@@ -10,80 +9,6 @@
   width: 100vw;
   color: map-get($colors, text-primary)!important;
   overflow-x: hidden;
-
-  &-player {
-    width: 100%!important;
-    height: 50vh!important;
-  }
-
-  &-back {
-    position: absolute!important;
-    color: map-get($colors, text-primary)!important;
-    top: 24px;
-    left: 24px;
-    text-decoration: none;
-    z-index: 99999;
-  }
-
-  &-episodes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-    padding-top: 24px;
-  }
-
-  &-episode {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 70%;
-    padding-bottom: 8px;
-    padding-bottom: 8px;
-    padding-left: 24px;
-    align-items: center;
-    border-bottom: 1px solid map-get($colors, text-secondary);
-    color: map-get($colors, text-primary);
-
-    &__name {
-      margin-left: 48px;
-    }
-
-    &:hover {
-      color: map-get($colors, secondary);
-      border-bottom-color: map-get($colors, secondary);
-      cursor: pointer;
-    }
-  }
-
-  &-info {
-    color: map-get($colors, text-secondary);
-    margin: 24px;
-    
-    &__name {
-      margin: 8px;
-      font-weight: 800;
-      font-size: 28px;
-      text-align: left;
-    }
-
-    &__actors {
-      margin: 8px;
-      font-size: 16px;
-      font-weight: 500;
-      padding-top: 16px;
-      text-align: left;
-    }
-
-    &__description {
-      font-weight: 200;
-      margin: 8px;
-      font-size: 14px;
-      padding-top: 8px;
-      width: 50vw;
-      text-align: left;
-    }
-  }
 
   &-voucher {
     display: flex;

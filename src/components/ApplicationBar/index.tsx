@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 
 import { ExpansionPanel, ExpansionPanelDetails, ExpansionPanelSummary, List, ListItem, ListItemText, SwipeableDrawer } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,12 +10,12 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import { ExpandableMenuSection } from './interfaces';
 
+import './ApplicationBar.scss';
+
 const ApplicationBar = ({
   onSearch,
   onFilter,
-  onToggleDrawer,
   searchWord,
-  drawerToggle,
   expandedItem,
   handleMenuExpansion,
   selectedGenre,
@@ -23,6 +23,12 @@ const ApplicationBar = ({
   categories,
   genre
 }) => {
+  const [drawerToggle, onToggleDrawer] = useState(false);
+
+  const toggleDrawer = () => {
+    onToggleDrawer(!drawerToggle);
+  };
+
   return (
     <AppBar
       position="relative"
@@ -33,7 +39,7 @@ const ApplicationBar = ({
             color="inherit"
             aria-label="Open drawer"
             className="app-bar__toolbar-hum"
-            onClick={onToggleDrawer}
+            onClick={toggleDrawer}
             >
             <MenuIcon fontSize="large"/>
           </IconButton>
@@ -54,8 +60,8 @@ const ApplicationBar = ({
         </Toolbar>
         <SwipeableDrawer
           open={drawerToggle}
-          onClose={onToggleDrawer}
-          onOpen={onToggleDrawer}
+          onClose={toggleDrawer}
+          onOpen={toggleDrawer}
         >
           <div className="app-bar__drawer">
             <ExpansionPanel
